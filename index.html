@@ -125,7 +125,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">1</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
 
   </li>
   </ul>
@@ -183,7 +183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -233,6 +233,100 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://suyihao1030.github.io/2021/02/01/%E3%80%90ODOP%E3%80%91%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%A6%96%E5%B1%8F%E7%9A%84%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Su Yihao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SuYihao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/01/%E3%80%90ODOP%E3%80%91%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%A6%96%E5%B1%8F%E7%9A%84%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%EF%BC%9F/" class="post-title-link" itemprop="url">【ODOP】如何解决首屏的白屏问题？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-02-01 17:15:09 / 修改时间：21:25:58" itemprop="dateCreated datePublished" datetime="2021-02-01T17:15:09+08:00">2021-02-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>开一个系列，one day one problem<br>看看能坚持多久 </p>
+</blockquote>
+<h3 id="如何解决首屏白屏问题"><a href="#如何解决首屏白屏问题" class="headerlink" title="如何解决首屏白屏问题"></a>如何解决首屏白屏问题</h3><h4 id="首屏和白屏"><a href="#首屏和白屏" class="headerlink" title="首屏和白屏"></a>首屏和白屏</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>FP(First Paint)首次绘制: 标记浏览器渲染任何在视觉上不同于导航前屏幕内容之内容的时间点。<br>FCP(First Contentful Paint)首次内容绘制: 首次绘制任何文本，图像，非空白canvas或SVG的时间点。</p>
+</blockquote>
+<p>当浏览器开始渲染页面，首先触发白屏，出现背景色。之后开始渲染 DOM，当浏览器绘制完第一个 DOM 之后，就触发了首屏。</p>
+<h5 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;load&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> timing = performance.timing;</span><br><span class="line">    <span class="comment">// 白屏时间</span></span><br><span class="line">    <span class="keyword">const</span> blankTime = timing.domInteractive - timing.fetchStart;</span><br><span class="line">    <span class="comment">// 首屏时间</span></span><br><span class="line">    <span class="keyword">const</span> readyTime = timing.domContentLoadedEventEnd - timing.fetchStart;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>fetchStart</code> : 返回浏览器准备使用 HTTP 请求读取文档时的 Unix 毫秒时间戳。该事件在网页查询本地缓存之前发生</li>
+<li><code>domInteractive</code> : 返回当前网页 DOM 结构结束解析、开始加载内嵌资源时（即 <code>Document.readyState</code> 属性变为 <code>interactive</code> 、相应的 <code>readystatechange</code> 事件触发时）的 Unix 毫秒时间戳</li>
+<li><code>domContentLoadedEventEnd</code> : 返回当前网页所有需要执行的脚本执行完成时的 Unix 毫秒时间戳</li>
+</ul>
+<p>简单来说，其实就是：</p>
+<p>白屏时间 = 页面开始展示的时间点 - 页面开始请求的时间点</p>
+<p>首屏时间 = 页面渲染完第一个DOM的时间点 - 页面开始请求的时间点</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>了解了白屏时间的概念之后，解决方案可从两点入手，一是优化交互，淡化白屏的概念，二是直接减少白屏的时间，即加快请求和渲染</p>
+<h5 id="优化交互"><a href="#优化交互" class="headerlink" title="优化交互"></a>优化交互</h5><ul>
+<li>骨架屏</li>
+<li>预渲染</li>
+<li>SSR</li>
+</ul>
+<h5 id="减少白屏时间"><a href="#减少白屏时间" class="headerlink" title="减少白屏时间"></a>减少白屏时间</h5><ul>
+<li>代码、静态资源压缩</li>
+<li>资源动态加载</li>
+<li>减少首屏请求接口</li>
+<li>避免 css js 阻塞</li>
+</ul>
+<h4 id="本文参考"><a href="#本文参考" class="headerlink" title="本文参考"></a>本文参考</h4><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904112107044872#heading-8">首屏时间(FCP) VS 白屏时间(FP)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/web-easy/p/5287136.html">performance.timing检测页面加载速度</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -571,8 +665,8 @@
 
 
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
